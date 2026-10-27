@@ -1,0 +1,637 @@
+/* ---------------------------------------------------------------
+   YogaFX design tokens
+   Brand: red #dd3333, black #111111, ink #222222, white.
+   Two font families only: --font-heading (Archivo), --font-body (Open Sans).
+--------------------------------------------------------------- */
+:root {
+  --red: #dd3333;
+  --red-strong: #b92626;
+  --black: #111111;
+  --ink: #222222;
+  --white: #ffffff;
+  --paper: #f5f2ee;
+  --muted: #5d5853;
+  --muted-on-dark: #b9b4ae;
+  --line: #e3ded7;
+  --line-dark: #333333;
+  --whatsapp: #25d366;
+
+  --font-heading: var(--font-archivo), "Arial Narrow", Arial, sans-serif;
+  --font-body: var(--font-open-sans), Arial, sans-serif;
+
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.0625rem);
+  --step-1: clamp(1.15rem, 1.08rem + 0.35vw, 1.35rem);
+  --step-2: clamp(1.4rem, 1.22rem + 0.8vw, 1.9rem);
+  --step-3: clamp(1.75rem, 1.4rem + 1.6vw, 2.75rem);
+  --step-4: clamp(2.1rem, 1.5rem + 2.8vw, 3.9rem);
+  --step-5: clamp(2.4rem, 1.4rem + 4.8vw, 5.9rem);
+
+  --space-2xs: 0.375rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2.25rem;
+  --space-xl: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  --space-2xl: clamp(3rem, 2.2rem + 3.5vw, 5rem);
+  --section: clamp(2.25rem, 1.6rem + 2vw, 3.5rem);
+
+  --container: 1240px;
+  --container-text: 720px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-h: 72px;
+
+  --rule: 1px solid var(--line);
+  --rule-dark: 1px solid var(--line-dark);
+  --rule-strong: 3px solid var(--black);
+  --rule-red: 3px solid var(--red);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --header-h: 64px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--red);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-heading);
+  color: var(--black);
+  line-height: 1.05;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--step-5);
+  font-stretch: 85%;
+  letter-spacing: -0.015em;
+  text-transform: uppercase;
+  line-height: 0.95;
+}
+
+h2 {
+  font-size: var(--step-4);
+  font-stretch: 85%;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 0.98;
+}
+
+h3 {
+  font-size: var(--step-2);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+h4 {
+  font-size: var(--step-1);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+p + p {
+  margin-top: 1em;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--black);
+}
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 200;
+  padding: 0.75rem 1rem;
+  background: var(--black);
+  color: var(--white);
+  font-weight: 700;
+}
+
+.skip-link:focus {
+  top: 12px;
+  color: var(--white);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.section--paper {
+  background: var(--paper);
+}
+
+.section--dark {
+  background: var(--black);
+  color: #e9e6e2;
+}
+
+.section--dark h2,
+.section--dark h3,
+.section--dark h4,
+.section--dark strong {
+  color: var(--white);
+}
+
+.lead {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.section--dark .lead {
+  color: #e9e6e2;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.prose {
+  max-width: var(--container-text);
+}
+
+.prose > * + * {
+  margin-top: 1em;
+}
+
+.prose h2,
+.prose h3 {
+  margin-top: 1.6em;
+}
+
+.red {
+  color: var(--red);
+}
+
+/* Lists with a short red rule as marker: used for verbatim original lists */
+.list {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 0.9rem;
+  height: 3px;
+  background: var(--red);
+}
+
+.list--ruled {
+  gap: 0;
+}
+
+.list--ruled li {
+  padding-block: 0.85rem;
+  border-bottom: var(--rule);
+}
+
+.list--ruled li::before {
+  top: calc(0.85rem + 0.8em);
+}
+
+.section--dark .list--ruled li {
+  border-color: var(--line-dark);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--red);
+  --btn-fg: var(--white);
+  --btn-border: var(--red);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.8rem 1.6rem;
+  border: 2px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover {
+  --btn-bg: var(--red-strong);
+  --btn-border: var(--red-strong);
+  color: var(--btn-fg);
+}
+
+.btn svg {
+  flex: none;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.btn:hover svg {
+  transform: translateX(3px);
+}
+
+.btn--dark {
+  --btn-bg: var(--black);
+  --btn-border: var(--black);
+}
+
+.btn--dark:hover {
+  --btn-bg: var(--red);
+  --btn-border: var(--red);
+}
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--black);
+  --btn-border: var(--black);
+}
+
+.btn--outline:hover {
+  --btn-bg: var(--black);
+  --btn-fg: var(--white);
+  --btn-border: var(--black);
+}
+
+.btn--light {
+  --btn-bg: transparent;
+  --btn-fg: var(--white);
+  --btn-border: rgba(255, 255, 255, 0.7);
+}
+
+.btn--light:hover {
+  --btn-bg: var(--white);
+  --btn-fg: var(--black);
+  --btn-border: var(--white);
+}
+
+.btn--whatsapp svg {
+  width: 20px;
+  height: 20px;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+@media (max-width: 479px) {
+  .btn-row > .btn {
+    width: 100%;
+  }
+}
+
+/* Text link with arrow */
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+}
+
+.text-link:hover {
+  color: var(--red);
+}
+
+.section--dark .text-link {
+  color: var(--white);
+}
+
+/* Media frame keeps a stable ratio while images load */
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: #d9d4cd;
+}
+
+.frame > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Note used where original content is unresolved */
+.note {
+  padding: var(--space-s) var(--space-m);
+  border-left: var(--rule-red);
+  background: var(--paper);
+  font-size: var(--step--1);
+  color: var(--ink);
+}
+
+/* Data tables */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+  padding: 0.9rem 1rem 0.9rem 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: var(--rule);
+}
+
+.table thead th {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  border-bottom: var(--rule-strong);
+}
+
+.table tbody th {
+  font-weight: 700;
+  color: var(--black);
+}
+
+/* Page transition: CSS-only so server-rendered content is never hidden */
+.page-enter {
+  /* "backwards" only: a retained transform would break position:fixed (pinned sections) */
+  animation: page-in 0.55s var(--ease-out) backwards;
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero line reveal: hidden only when the inline script confirms JS + motion */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.line-mask > span {
+  display: block;
+}
+
+.motion-ready [data-hero-line] {
+  transform: translateY(110%);
+}
+
+.motion-fallback [data-hero-line] {
+  transform: none !important;
+}
+
+/* ---------- 12-column layout grid ----------
+   Used by redesigned pages so every column, image edge and text block
+   lines up with the same tracks and gutters. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-l);
+  row-gap: var(--space-xl);
+}
+
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-5 { grid-column: span 5; }
+.span-6 { grid-column: span 6; }
+.span-7 { grid-column: span 7; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: 1 / -1; }
+
+@media (max-width: 1023px) {
+  .span-3 { grid-column: span 6; }
+  .span-4,
+  .span-5,
+  .span-7,
+  .span-8 { grid-column: 1 / -1; }
+}
+
+@media (max-width: 1023px) {
+  .grid {
+    column-gap: var(--space-m);
+  }
+}
+
+/* Phones: one column, so gutters can never exceed the screen width */
+@media (max-width: 767px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-l);
+  }
+  .grid > * {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Standard section heading block: title, optional lead, fixed space below */
+.section-head {
+  display: grid;
+  gap: var(--space-s);
+  max-width: 780px;
+  margin-bottom: var(--space-l);
+}
+
+.section-head p {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.section--dark .section-head p {
+  color: var(--muted-on-dark);
+}
+
+/* Small uppercase label used for data terms (not decorative eyebrows) */
+.term {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.section--dark .term {
+  color: var(--muted-on-dark);
+}
+
+/* Split section heading: title left, intro right, on the same 12-column
+   tracks as the content below. Avoids half-empty heading rows. */
+.split-head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-l);
+  row-gap: var(--space-s);
+  align-items: end;
+  margin-bottom: var(--space-m);
+  padding-bottom: var(--space-m);
+  border-bottom: var(--rule);
+}
+
+.split-head h2 {
+  grid-column: 1 / span 5;
+  font-size: var(--step-3);
+}
+
+.split-head p {
+  grid-column: 7 / -1;
+  color: var(--muted);
+}
+
+.section--dark .split-head {
+  border-color: var(--line-dark);
+}
+
+.section--dark .split-head p {
+  color: var(--muted-on-dark);
+}
+
+@media (max-width: 1023px) {
+  .split-head {
+    column-gap: var(--space-m);
+  }
+  .split-head h2,
+  .split-head p {
+    grid-column: 1 / -1;
+  }
+}

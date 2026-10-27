@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+*.log
+.vercel
+.env*
+
+# Phase 1 audit: reports, screenshots and original source assets (96 MB).
+# Kept locally for scripts/build-images.py; not part of the site.
+docs/

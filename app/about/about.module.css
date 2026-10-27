@@ -1,0 +1,389 @@
+/* Shared stacked text block inside grid columns */
+.block {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.block > p + p {
+  margin-top: 0;
+}
+
+.block h3 {
+  padding-bottom: var(--space-xs);
+  border-bottom: var(--rule-strong);
+  font-size: var(--step-1);
+}
+
+:global(.section--dark) .block h3 {
+  margin-top: var(--space-s);
+  border-color: var(--line-dark);
+}
+
+:global(.section--dark) .block p {
+  color: #d6d1cb;
+}
+
+/* Column that carries its own section heading */
+.intro {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.intro h2,
+.mapCol h2 {
+  font-size: var(--step-3);
+  margin-bottom: var(--space-2xs);
+}
+
+.intro p + p {
+  margin-top: 0;
+}
+
+.statement {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: var(--black);
+}
+
+/* White panel used beside text on paper sections */
+.panel {
+  align-self: start;
+  padding: var(--space-l);
+  background: var(--white);
+}
+
+.panel h3 {
+  padding-bottom: var(--space-xs);
+  border-bottom: var(--rule-strong);
+  font-size: var(--step-1);
+}
+
+/* ---------- Hero ---------- */
+.heroGrid {
+  align-items: center;
+  row-gap: var(--space-l);
+  padding-block: var(--space-xl) var(--section);
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--space-m);
+}
+
+.title {
+  font-size: clamp(2.8rem, 1.4rem + 6vw, 7rem);
+  font-stretch: 78%;
+}
+
+.lead {
+  max-width: 34rem;
+  font-size: var(--step-1);
+  line-height: 1.55;
+}
+
+.heroImage {
+  aspect-ratio: 4 / 3;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-l);
+  margin: 0;
+  padding-top: var(--space-m);
+  border-top: var(--rule-strong);
+}
+
+.facts div {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.facts dd {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: var(--step-3);
+  font-weight: 800;
+  font-stretch: 80%;
+  line-height: 1.05;
+  color: var(--black);
+}
+
+@media (max-width: 767px) {
+  .facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-m);
+  }
+}
+
+/* ---------- Mission ---------- */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-l);
+  margin-top: var(--space-xs);
+}
+
+/* ---------- Approach ---------- */
+.ya {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr) auto;
+  gap: var(--space-l);
+  align-items: center;
+  padding: var(--space-m) var(--space-l);
+  background: var(--paper);
+}
+
+.badge {
+  width: 96px;
+  height: auto;
+}
+
+.yaText {
+  display: grid;
+  gap: var(--space-2xs);
+}
+
+.yaText h3 {
+  font-size: var(--step-1);
+}
+
+.yaText p {
+  max-width: 72ch;
+  font-size: 0.95rem;
+}
+
+.yaText p + p {
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .ya {
+    grid-template-columns: 72px minmax(0, 1fr);
+    gap: var(--space-m);
+    padding: var(--space-m);
+  }
+  .badge {
+    width: 72px;
+  }
+  .yaLink {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
+
+.alignment {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  align-self: start;
+  list-style: none;
+  padding-left: var(--space-xl);
+}
+
+.alignmentTrack {
+  position: absolute;
+  left: 8px;
+  top: 0.55em;
+  bottom: 0.55em;
+  width: 3px;
+  background: var(--line);
+}
+
+.alignmentTrack span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--red);
+  transform-origin: bottom;
+}
+
+.alignment li {
+  position: relative;
+  padding-block: 0.15rem;
+  font-family: var(--font-heading);
+  font-size: var(--step-3);
+  font-weight: 800;
+  font-stretch: 78%;
+  line-height: 1.12;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.alignment li::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--space-xl) * -1 + 2px);
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  background: var(--white);
+  border: 3px solid var(--red);
+  transform: translateY(-50%);
+}
+
+/* ---------- Founder ---------- */
+.founderImage,
+.gradsImage {
+  align-self: stretch;
+  min-height: 360px;
+}
+
+.founderImage img,
+.gradsImage img {
+  position: absolute;
+  inset: 0;
+}
+
+.founderImage img {
+  object-position: 55% 30%;
+}
+
+.story {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+  padding-top: var(--space-m);
+  border-top: var(--rule-red);
+}
+
+.story h3 {
+  font-size: var(--step-1);
+}
+
+.story p {
+  color: #d6d1cb;
+}
+
+/* ---------- Timeline ---------- */
+.mapCol {
+  display: grid;
+  align-content: start;
+  gap: var(--space-s);
+}
+
+.mapCol .map {
+  margin-top: var(--space-xs);
+}
+
+.map {
+  aspect-ratio: 913 / 514;
+  background: var(--white);
+  border: var(--rule);
+}
+
+.map img {
+  object-fit: contain;
+}
+
+/* Timeline flows into two columns so it ends level with the map column */
+.timeline {
+  columns: 2;
+  column-gap: var(--space-l);
+  list-style: none;
+  padding-top: var(--space-xs);
+  border-top: var(--rule-strong);
+}
+
+.year {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: var(--space-s);
+  border-bottom: var(--rule);
+  break-inside: avoid;
+}
+
+.yearLabel {
+  font-family: var(--font-heading);
+  font-size: var(--step-2);
+  font-weight: 800;
+  font-stretch: 78%;
+  line-height: 1;
+  color: var(--red);
+}
+
+.year ul {
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 639px) {
+  .timeline {
+    columns: 1;
+  }
+}
+
+/* ---------- Graduates ---------- */
+
+.gradList {
+  display: grid;
+  align-content: start;
+  list-style: none;
+  border-top: var(--rule-strong);
+}
+
+.gradList li {
+  display: grid;
+  gap: 0.25rem;
+  padding-block: var(--space-m);
+  border-bottom: var(--rule);
+}
+
+.gradList li:first-child {
+  padding-top: var(--space-s);
+}
+
+.gradList h3 {
+  font-size: var(--step-1);
+}
+
+.gradList p + p {
+  margin-top: 0;
+}
+
+.gradYear {
+  font-size: var(--step--1);
+  font-weight: 700;
+  color: var(--red);
+}
+
+/* ---------- CTA ---------- */
+.cta {
+  background: var(--red);
+  color: var(--white);
+}
+
+.ctaGrid {
+  align-items: end;
+  padding-block: var(--space-2xl);
+}
+
+.ctaGrid h2 {
+  color: var(--white);
+}
+
+.ctaText {
+  max-width: 46ch;
+  margin-top: var(--space-s);
+}
+
+.ctaActions {
+  justify-content: flex-end;
+}
+
+.cta :global(.btn--dark:hover) {
+  --btn-bg: var(--white);
+  --btn-fg: var(--black);
+  --btn-border: var(--white);
+  color: var(--black);
+}
+
+@media (max-width: 1023px) {
+  .ctaActions {
+    justify-content: flex-start;
+  }
+}

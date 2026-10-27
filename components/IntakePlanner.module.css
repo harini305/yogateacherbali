@@ -1,0 +1,239 @@
+.planner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: var(--space-l) var(--space-xl);
+  align-items: stretch;
+}
+
+.dates,
+.rooms {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.legend {
+  margin-bottom: var(--space-xs);
+  padding: 0;
+  font-family: var(--font-heading);
+  font-size: var(--step-0);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+/* ---------- Dates ---------- */
+.dateGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-left: var(--rule);
+}
+
+.date {
+  position: relative;
+  display: block;
+  border-right: var(--rule);
+  border-bottom: var(--rule);
+  cursor: pointer;
+}
+
+.date input,
+.room input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.dateText {
+  display: grid;
+  height: 100%;
+  padding: 0.85rem 0.9rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.date:hover .dateText {
+  background: var(--paper);
+}
+
+.dateDays {
+  font-family: var(--font-heading);
+  font-size: var(--step-1);
+  font-weight: 800;
+  font-stretch: 85%;
+  line-height: 1.15;
+  color: var(--black);
+}
+
+.dateMonth {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* Featured next intake: one full-width row above the grid */
+.featured {
+  border: var(--rule);
+}
+
+.featured .dateText {
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: var(--space-s);
+  padding: 0.85rem 1rem;
+}
+
+.featured .dateDays {
+  font-size: var(--step-2);
+}
+
+.next {
+  padding: 0.2rem 0.5rem;
+  background: var(--red);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.date input:checked + .dateText {
+  background: var(--black);
+}
+
+.date input:checked + .dateText .dateDays {
+  color: var(--white);
+}
+
+.date input:checked + .dateText .dateMonth {
+  color: var(--muted-on-dark);
+}
+
+.date input:focus-visible + .dateText,
+.room input:focus-visible + span {
+  outline: 3px solid var(--red);
+  outline-offset: -3px;
+}
+
+/* ---------- Side ---------- */
+.side {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-m);
+}
+
+.roomRow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2xs);
+}
+
+.room {
+  position: relative;
+  cursor: pointer;
+}
+
+.room span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 48px;
+  padding: 0.4rem 0.5rem;
+  border: 2px solid var(--line);
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.room:hover span {
+  border-color: var(--black);
+}
+
+.room input:checked + span {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--white);
+}
+
+.roomNote {
+  margin-top: 0.45rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.summary {
+  display: grid;
+  align-content: space-between;
+  gap: var(--space-s);
+  padding: var(--space-m);
+  background: var(--black);
+  color: #e9e6e2;
+}
+
+.summary dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-s) var(--space-m);
+}
+
+.summary dl div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.summary .wide {
+  grid-column: 1 / -1;
+  padding-top: var(--space-s);
+  border-top: var(--rule-dark);
+}
+
+.summary dt {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted-on-dark);
+}
+
+.summary dd {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+@media (max-width: 1023px) {
+  .planner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .dateGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 479px) {
+  .dateGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .featured .dateText {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+    justify-items: start;
+  }
+  .summary dl {
+    grid-template-columns: 1fr;
+  }
+}
